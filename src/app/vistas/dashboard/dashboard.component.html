@@ -1,0 +1,87 @@
+<app-navbar></app-navbar>
+<!-- TODO: Cambiar proceso realizado por un conjunto de pasos almacenados en otra tabla-->
+
+<!--Muestra tareas-->
+<div style="margin: 40px;">
+
+    <button type="button" class="btn btn-primary" (click)="limpiar()" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        + Nueva Tarea
+    </button>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Proceso Realizado</th> <!--Eliminar esta columna y agregar -->
+                <th scope="col">Creada Por:</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tarea of tareas" (click)="limpiar(); update(tarea)" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                <th scope="row">{{tarea.idTarea}}</th>
+                <td>{{tarea.date}}</td>
+                <td>{{tarea.descripcion}}</td>
+                <td>{{tarea.detallesproceso}}</td>
+                <td>{{tarea.idusuariocreador}}</td>
+                <td>{{tarea.estado}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Form crear -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form class="row g-3 needs-validation" novalidate>
+                    <div class="col-md-12">
+                        <input type="hidden" *ngIf="mostrarDatos;" name="idTarea" value="{{tarea.idTarea}}">
+                        <label for="validationCustom01" class="form-label">Descripción</label> <br>
+                        <input type="text" class="form-control" *ngIf="mostrarDatos; else descripcionElse"
+                            style="width: 28em;" name="idTarea" [(ngModel)]="tarea.descripcion">
+                        <div class="valid-feedback">
+
+                            <!--<textarea class="form-control" *ngIf="mostrarDatos; else limpiarTxt" id="validationCustom01" rows="4" required>{{tarea.descripcion}}</textarea>-->
+
+                        </div>
+                        <br>                    
+
+                        <!--Multiple select de usuario-->                        
+                            <label for="usuarios" class="form-label">Asigna un usuario</label> <br>
+                            <select id="usuarios" name="usuarios" size="4"  [(ngModel)]="opcionesSeleccionadas" (change)="actualizarOpcionesSeleccionadas()" multiple style="width: 28em;">
+                                <option *ngFor="let usuario of usuarios" [value]="usuario.idusuario">{{ usuario.nombre }}</option>
+                            </select><br><br>
+                            <input type="submit">
+                    </div>
+
+                </form>
+                
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #descripcionElse>
+    <!-- Contenido que se mostrará si mostrarElemento es false -->
+    <!--<textarea class="form-control" id="validationCustom01" rows="4" required></textarea> -->
+    <input type="text" class="form-control" style="width: 28em;" name="idTarea">
+</ng-template>

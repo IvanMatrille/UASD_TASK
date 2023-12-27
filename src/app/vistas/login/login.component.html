@@ -1,0 +1,30 @@
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../../assets/to_do_list.png" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+        <input type="text" id="login" class="fadeIn second" placeholder="Usuario" formControlName="nombreUsuario">
+        <input type="password" id="password" class="fadeIn third" placeholder="Contraseña" formControlName="password">
+        <input type="submit" class="fadeIn fourth" value="Iniciar">
+      </form>
+  
+
+      <!-- Usuario o contraseña incorrecta -->
+      <div class="alert alert-danger" *ngIf="errorStatus">
+        <p> {{ errorMjs }} </p>
+      </div>
+
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">¿Olvidó su contraseña?</a>
+      </div>
+  
+    </div>
+  </div>
