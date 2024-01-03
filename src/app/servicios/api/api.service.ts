@@ -32,6 +32,15 @@ export class ApiService {
     return this.http.get<TareaI[]>(direccion);
   }
 
-  
+  getTarea(id:any):Observable<TareaI>{
+    let direccion = this.url + "Tareas/" + id;
+    return this.http.get<TareaI>(direccion);    
+  }
+
+  postTarea(form:TareaI):Observable<responseI>{
+    let direccion = this.url + "Tareas"
+    console.log(form)
+    return this.http.post<responseI>(direccion, form);
+  }
 
 }

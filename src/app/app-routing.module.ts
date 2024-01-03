@@ -6,6 +6,7 @@ import { EstudianteComponent } from './vistas/estudiante/estudiante.component';
 import { ServicioComponent } from './vistas/servicio/servicio.component';
 import { TareaComponent } from './vistas/tarea/tarea.component';
 import { UsuarioComponent } from './vistas/usuario/usuario.component';
+import { TareaFormComponent } from './plantillas/tarea-form/tarea-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login' ,  pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'estudiante', component:EstudianteComponent },
   { path: 'servicio', component:ServicioComponent },
   { path: 'tarea', component:TareaComponent },
-  { path: 'usuario', component:UsuarioComponent }
+  { path: 'usuario', component:UsuarioComponent },
+  { path: 'tarea-form/:id', component:TareaFormComponent }
     
 ];
 

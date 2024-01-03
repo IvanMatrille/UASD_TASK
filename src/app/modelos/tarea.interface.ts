@@ -1,8 +1,8 @@
 export interface TareaI{
     idTarea:string;
-    descripcion:string;
-    detallesproceso:string;
-    idusuariocreador:string;
-    estado:string;
-    date:string;
+    descripcion: any | null;
+    detallesproceso?:any | null;
+    idusuariocreador:any | null;
+    estado?:any | null;
+    date?:any | null;
 }
